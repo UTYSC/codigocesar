@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    let abc = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+    // El texto que ahora ingresas es el que ya está encriptado
+    let texto_encriptado = prompt("Ingrese el texto a desencriptar");
+    let key = parseInt(prompt("Ingrese la llave"));
+    let texto_desencriptado = [];
+
+    // Convertimos el texto en un array de caracteres
+    let texto_array = texto_encriptado.split("");
+
+    for (let element of texto_array) {
+        // Buscamos el índice de la letra en el alfabeto
+        let index = abc.indexOf(element);
+        
+        // Si el caracter es una letra que está en nuestro alfabeto...
+        if (index !== -1) {
+            let new_index = index - key;
+
+            // Si al restar la llave el índice se vuelve negativo,
+            // le damos la vuelta al alfabeto desde el final.
+            if (new_index < 0) {
+                texto_desencriptado.push(abc[new_index + abc.length]);
+            } else {
+                texto_desencriptado.push(abc[new_index]);
+            }
+        } else {
+            // Si el caracter no está en el alfabeto (como un espacio o un punto),
+            // simplemente lo agregamos tal cual.
+            texto_desencriptado.push(element);
+        }
+    }
+
+    
+    let resultado = texto_desencriptado.join("");
+    console.log("Texto desencriptado:", resultado);
+    alert("Texto desencriptado: " + resultado);
+
+</script>
+    
+</body>
+</html>
